@@ -52,7 +52,9 @@ class LoginController extends Controller
             //generate the token for the user
             $user_login_token= auth()->user()->createToken('PassportExample@Section.io')->accessToken;
             //now return this token on success login attempt
-            return response()->json(['token' => $user_login_token], 200);
+            // return response()->json(['token' => $user_login_token], 200);
+             return $this->sendResponse(true,['token' =>$user_login_token ],'login successful',200);
+
         }
         else{
             //wrong login credentials, return, user not authorised to our system, return error code 401

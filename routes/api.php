@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\StudentapiController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +26,8 @@ Route::post('login',[LoginController::class,'loginUserExample']);
 //add this middleware to ensure that every request is authenticated
 Route::middleware('auth:api')->group(function(){
     Route::get('user', [LoginController::class,'authenticatedUserDetails']);
+    
+
 });
+Route::post('studentregister',[StudentapiController::class,'registerStudentExample']);
+
