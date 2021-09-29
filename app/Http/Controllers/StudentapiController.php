@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Helpers\ApiHelper;
+// use softDeletes;
 
 
 class StudentapiController extends Controller
@@ -45,6 +46,26 @@ class StudentapiController extends Controller
         // $access_token_example = $user->createToken('PassportExample@Section.io')->access_token;
         // //return the access token we generated in the above step
         // return response()->json(['token' => $user_login_token],200);
+    }
+    public function update(Request $request,$id){
+        $student=Student::find($id)->update([
+            'student_name'=>$request->student_name,
+            'student_email'=>$request->student_email,
+            'mobile_number'=>$request->mobile_number,
+            'date_of_birth'=>$request->date_of_birth,
+            'state'=>$request->state,
+            'district'=>$request->district,
+            'pin_code'=>$request->pin_code,
+            'course_name'=>$request->course_name,
+        ]);
+        return $this->sendResponse(true,[],'updation successful',200);
+
+    }
+    public function delete(Request $request,$id){
+        $student=Student::find($id);
+        $student->delete();
+        return $this->sendResponse(true,['student_id'=> $student->id ],'Deletion successful',200);
+
     }
 }
 

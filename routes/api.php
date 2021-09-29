@@ -30,4 +30,6 @@ Route::middleware('auth:api')->group(function(){
 
 });
 Route::post('studentregister',[StudentapiController::class,'registerStudentExample']);
+Route::put('studentupdate/{id}',[StudentapiController::class,'update']);
+Route::delete('studentdelete/{id}',[StudentapiController::class,'delete']);
 
